@@ -92,7 +92,7 @@ class ArticleController extends Controller
             Storage::delete('public/' . $article->featured_image);
         }
         $image_name = $request->file('image')->store('images', 'public');
-        $article->feature_image = $image_name;
+        $article->featured_image = $image_name;
 
         $article->save();
         return 'Article berhasil di ubah';

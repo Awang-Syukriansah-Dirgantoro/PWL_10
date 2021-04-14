@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use PDF;
 use App\Models\Mahasiswa;
 use App\Models\Kelas;
 use App\Models\Mahasiswa_MataKuliah;
@@ -124,5 +125,10 @@ class MahasiswaController extends Controller
     {
         $mahasiswa = Mahasiswa::with('kelas', 'matakuliah')->find($Nim);
         return view('users.nilai', compact('mahasiswa'));
+    }
+    public function cetak_pdf($Nim){
+        $mahasiswa = Mahasiswa::with('kelas', 'matakuliah')->find($Nim);
+        $pdf = PDF::loadview('users.pdf', compact('mahasiswa'));
+        return $pdf->stream();
     }
 };

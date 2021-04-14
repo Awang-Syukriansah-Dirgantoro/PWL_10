@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\MahasiswaController;
 use App\Models\Article;
 
 /*
@@ -21,3 +22,7 @@ Route::get('/', function () {
 
 Route::resource('articles', ArticleController::class);
 Route::get('/article/cetak_pdf', [ArticleController::class, 'cetak_pdf']);
+
+Route::resource('mahasiswa', MahasiswaController::class);
+Route::post('cari',[MahasiswaController::class,'cari']);
+Route::get('mahasiswa/nilai/{Nim}', [MahasiswaController::class, 'nilai'])->name('mahasiswa.nilai');
